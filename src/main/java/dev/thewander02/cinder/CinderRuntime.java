@@ -46,7 +46,7 @@ final class CinderRuntime implements AutoCloseable {
                 });
     }
 
-    void renderFinalPass(RenderTarget mainTarget) {
+    void beginFrame() {
         if (closed) {
             return;
         }
@@ -54,6 +54,12 @@ final class CinderRuntime implements AutoCloseable {
         PendingReload pending = pendingReload.getAndSet(null);
         if (pending != null) {
             applyReload(pending);
+        }
+    }
+
+    void renderFinalPass(RenderTarget mainTarget) {
+        if (closed) {
+            return;
         }
 
         try {

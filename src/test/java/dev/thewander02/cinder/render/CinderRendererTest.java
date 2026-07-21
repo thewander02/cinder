@@ -61,6 +61,22 @@ class CinderRendererTest {
     }
 
     @Test
+    void unchangedReloadDoesNotClearOrRecompileThePipelineCache() {
+        FakeGpu gpu = new FakeGpu();
+        CinderRenderer renderer = new CinderRenderer(gpu);
+        PreparedPack first = pack("first");
+        renderer.install(first);
+
+        CinderRenderer.ReloadResult result = renderer.install(first);
+
+        assertTrue(result.success());
+        assertTrue(result.message().contains("unchanged"));
+        assertEquals(1, gpu.resets);
+        assertEquals(List.of("first"), gpu.compiledPacks);
+        renderer.close();
+    }
+
+    @Test
     void disableStopsRenderingAndDestroysTheTarget() {
         FakeGpu gpu = new FakeGpu();
         CinderRenderer renderer = new CinderRenderer(gpu);

@@ -48,4 +48,10 @@ public final class CinderClient implements ClientModInitializer {
             runtime.renderFinalPass(mainTarget);
         }
     }
+
+    public static void beginFrame() {
+        if (runtime != null) {
+            runtime.beginFrame();
+        }
+    }
 }

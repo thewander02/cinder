@@ -10,6 +10,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GameRenderer.class)
 abstract class GameRendererMixin {
+    @Inject(method = "render", at = @At("HEAD"))
+    private void cinder$beginFrame(DeltaTracker deltaTracker, boolean advanceGameTime, CallbackInfo callbackInfo) {
+        CinderClient.beginFrame();
+    }
+
     @Inject(
             method = "render",
             at = @At(

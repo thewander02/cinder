@@ -27,6 +27,15 @@ public final class CinderRenderer implements AutoCloseable {
             return ReloadResult.failure("Minecraft is using OpenGL; Cinder remains inactive", null);
         }
 
+        PackPipeline active = pipelines.active();
+        if (active != null
+                && active.pack().identity().equals(pack.identity())
+                && active.pack().contentHash().equals(pack.contentHash())) {
+            return ReloadResult.success(
+                    "Reloaded " + pack.identity() + " (" + shortHash(pack.contentHash()) + "; unchanged)"
+            );
+        }
+
         PackPipeline candidate = PackPipeline.create(pack);
         PipelineTransaction.Transition transition = pipelines.install(candidate, compiler());
         if (transition.installed()) {
