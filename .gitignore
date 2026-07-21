@@ -4,6 +4,7 @@
 build/
 out/
 run/
+logs/
 *.iml
 *.log
 .DS_Store
