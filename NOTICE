@@ -1,0 +1,10 @@
+Cinder
+Copyright 2026 thewander02
+
+Cinder is an independent, greenfield Minecraft shaderpack-loader project.
+The Iris Shaders project was consulted as a public behavioral reference for
+legacy shaderpack concepts. Cinder is not a fork of Iris, includes no Iris
+source code, assets, strings, test fixtures, or Git history, and is not
+affiliated with or endorsed by the Iris Project.
+
+Iris Shaders: https://github.com/IrisShaders/Iris

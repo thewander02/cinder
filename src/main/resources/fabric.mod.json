@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "cinder",
+  "version": "${version}",
+  "name": "Cinder",
+  "description": "A greenfield Vulkan-native shaderpack loader for Minecraft.",
+  "authors": [
+    "thewander02"
+  ],
+  "contact": {
+    "sources": "https://github.com/thewander02/cinder",
+    "issues": "https://github.com/thewander02/cinder/issues"
+  },
+  "license": "Apache-2.0",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "dev.thewander02.cinder.CinderClient"
+    ]
+  },
+  "mixins": [
+    "cinder.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.2",
+    "fabric-api": "*",
+    "java": ">=25",
+    "minecraft": "~26.2",
+    "sodium": "0.9.x"
+  }
+}
