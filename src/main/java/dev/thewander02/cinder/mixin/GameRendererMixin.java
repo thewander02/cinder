@@ -14,7 +14,7 @@ abstract class GameRendererMixin {
             method = "render",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/renderer/FogRenderer;endFrame()V",
+                    target = "Lnet/minecraft/client/renderer/fog/FogRenderer;endFrame()V",
                     shift = At.Shift.BEFORE
             )
     )

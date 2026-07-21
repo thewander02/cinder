@@ -67,6 +67,7 @@ public final class CinderRenderer implements AutoCloseable {
             return;
         }
 
+        ensureCompiled(active);
         ensureTarget(frame.width(), frame.height());
         gpu.draw(active, offscreenTarget, frame);
     }
@@ -107,6 +108,18 @@ public final class CinderRenderer implements AutoCloseable {
             offscreenTarget = gpu.createTarget(width, height);
         } else if (offscreenTarget.width() != width || offscreenTarget.height() != height) {
             offscreenTarget.resize(width, height);
+        }
+    }
+
+    private void ensureCompiled(PackPipeline active) {
+        try {
+            if (!gpu.compile(active)) {
+                throw new IllegalStateException("The active Cinder pipeline is no longer valid");
+            }
+        } catch (RuntimeException exception) {
+            throw exception;
+        } catch (Exception exception) {
+            throw new IllegalStateException("Could not restore the active Cinder pipeline", exception);
         }
     }
 

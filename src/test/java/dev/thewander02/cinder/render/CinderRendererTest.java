@@ -27,6 +27,7 @@ class CinderRendererTest {
         assertEquals(1, gpu.lastTarget.resizeCount);
         assertEquals(3, gpu.drawnPacks.size());
         assertEquals("first", gpu.drawnPacks.getLast());
+        assertEquals(List.of("first", "first", "first", "first"), gpu.compiledPacks);
         renderer.close();
     }
 
@@ -41,7 +42,7 @@ class CinderRendererTest {
         renderer.renderFrame(new FakeFrame(320, 180));
 
         assertFalse(result.success());
-        assertEquals(List.of("first", "broken", "first"), gpu.compiledPacks);
+        assertEquals(List.of("first", "broken", "first", "first"), gpu.compiledPacks);
         assertEquals("first", gpu.drawnPacks.getLast());
         renderer.close();
     }
